@@ -1,0 +1,9 @@
+##################################################################
+~~~~~~~~~~~~~~~~~~~~~~IMPORTANT OBSERVATIONS~~~~~~~~~~~~~~~~~~~~~~
+##################################################################
+
+OBSERVATION 1:
+During test 1, when DNS recieved a query, I tried sending back the following response:
+    serverSocket.sendto(b'Sup Mate?', address)
+But the nslookup on the client side didn't recognize it and keeps sending back the query messages as it was in the test 0, which gives me the idea that
+nslookup ignores any response other than the DNS query answer.
