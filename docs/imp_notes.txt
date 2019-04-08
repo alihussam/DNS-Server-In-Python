@@ -1,0 +1,28 @@
+#####################################################################
+~~~~~~~~~~~~~~~~~IMPORTANT CONSIDRATIONS AND LIMITATIONS~~~~~~~~~~~~~
+#####################################################################
+
+0. We will try to follow rfc1035.
+1. We will use UDP because of overhead of TCP for small packets.
+2. UDP message 512 octets or less (512 bytes)
+3. DNS operates on port 53 by default
+4. We will not implement Authority RRs and Additional RRs, because we are creating an authoritative DNS.
+5. DNS query: class: IN is for INTERNET. Server would get such queries 99.9% of the time.
+6. Exploring DNS Header(12 bytes): transaction ID = 2 bytes, very first part of DNS request and response, used for the identification of packet.
+   FLAGS: QR(0/1) Query 0 or Response 1. Opcode = 4bit we will use 0 for standard query.
+   AA field: Authoritative Answer 1 bit. 
+   TC if request bigger than 512 bytes so we will tell that it was truncated.
+   RD recursion desired: if recursion to do or not. Ask server if it offers recursion we will set it to 0.
+   Z is reserved for future uses. Set all to 0.
+   RCODE 4 bit: tells weather DNS Query was successful for simplicity we will say all were successful.
+   QDCOUNT number of questions always 1.
+   ANCOUNT no of Answers
+   NSCOUNT number of name servers we will not send any
+   ARCOUNT additional records we will send 0.
+
+#####################################################################
+~~~~~~~~~~~~~~~~~~~~~~~~~MESSAGE COMPRESSION~~~~~~~~~~~~~~~~~~~~~~~~~
+#####################################################################
+0. Used to reduce bandwidth that DNS requests takes.
+1. First two bits are 11 for a message.
+2. 
