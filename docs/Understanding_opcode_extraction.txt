@@ -1,0 +1,19 @@
+Assume that we have 2 bytes 
+1011 0100 (180) as left hand side of &
+0110 1000 (104)as right hand side of &
+Applying & operator
+1011 0100 & 0110 1000
+& operator will match bits on b.h.s if bytes have bit 1
+at same position the output will also be one for the same position
+
+        1011 0100 (180)
+        0110 1000 (104)
+OUTPUT =0010 0000 (32) 
+
+Moving on to bit shift operators
+Bit shift will move bits on to the left 
+Applying bit shift on our output 32
+
+0010 0000 (32)
+32 << 2 (BIT SHIFT)
+1000 0000
