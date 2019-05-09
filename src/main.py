@@ -31,6 +31,7 @@ class DNS:
         self.OPCODE = ''    
         self.SUPPORTED_RECORD_TYPES = {
             '0001':'a',
+            '0005':'cname'
         }
         self.SUPPORTED_OPCODE = ['0000']
         
@@ -41,16 +42,19 @@ class DNS:
         for bit in range(1,5):
             self.OPCODE += str(ord(byte1)&(1<<bit))
 
-
-
     def response(self):
         #Check if query kind is supported
         if self.OPCODE not in self.SUPPORTED_OPCODE:
             return self.generate_Not_Implemented()
         elif self.DNSTYPE == b"NOT SUPPORTED":
-            return self.generate_Name_Error()
+            return self.generate_Refuse()
         else:
             return self.generate_response_packet()    
+
+    def generate_Refuse(self):
+        #QR+OPCODE+AA+TC+RD && RA+Z+RCODE
+        FLAGS = int('1'+self.OPCODE+'1'+'0'+'0', 2).to_bytes(1, byteorder='big')+int('0'+'000'+'0101', 2).to_bytes(1, byteorder='big')     
+        return self.TRANSACTION_ID + FLAGS + self.data[4:]
 
     def generate_Name_Error(self):
         #QR+OPCODE+AA+TC+RD && RA+Z+RCODE
@@ -62,13 +66,22 @@ class DNS:
         FLAGS = int('1'+self.OPCODE+'1'+'0'+'0', 2).to_bytes(1, byteorder='big')+int('0'+'000'+'0100', 2).to_bytes(1, byteorder='big')     
         return self.TRANSACTION_ID + FLAGS + self.data[4:]
 
+    def generate_Server_Failure(self):
+        #QR+OPCODE+AA+TC+RD && RA+Z+RCODE
+        FLAGS = int('1'+self.OPCODE+'1'+'0'+'0', 2).to_bytes(1, byteorder='big')+int('0'+'000'+'0010', 2).to_bytes(1, byteorder='big')     
+        return self.TRANSACTION_ID + FLAGS + self.data[4:]
+
+    def generate_Empty(self):
+        #QR+OPCODE+AA+TC+RD && RA+Z+RCODE
+        FLAGS = int('1'+self.OPCODE+'0'+'0'+'0', 2).to_bytes(1, byteorder='big')+int('0'+'000'+'0000', 2).to_bytes(1, byteorder='big')  
+        return self.TRANSACTION_ID+ FLAGS + self.data[4:]
+
     def getquestiondomain(self, data):
         state = 0
         expectedlength = 0
         domainstring = ''
         domainparts = []
         x = 0
-        y = 0
         for byte in data:
             if state == 1:
                 if byte != 0:
@@ -85,18 +98,18 @@ class DNS:
             else:
                 state = 1
                 expectedlength = byte
-            y += 1
-
-        questiontype = data[y:y+2]
+        questiontype = data[-4:-2]
 
         return (domainparts, questiontype)
 
     def getrecs(self, data):
         domain, questiontype = self.getquestiondomain(data)
-        qt = ''
-        if questiontype == b'\x00\x01':
-            qt = 'a'
+        qt = self.DNSTYPE
+        # if questiontype == b'\x00\x01':
+        #     qt = 'a'
         zone = getzone(domain)
+        if zone == {}:
+            return ("NotAA",qt,domain)
         return (zone.get(qt,""), qt, domain)
 
     def buildquestion(self, domainname, rectype):
@@ -109,7 +122,7 @@ class DNS:
             for char in part:
                 qbytes += ord(char).to_bytes(1, byteorder='big')
 
-        if rectype == 'a':
+        if rectype == self.DNSTYPE:
             qbytes += (1).to_bytes(2, byteorder='big')
 
         qbytes += (1).to_bytes(2, byteorder='big')
@@ -118,11 +131,11 @@ class DNS:
 
     def rectobytes(self, domainname, rectype, recttl, recval):
         rbytes = b'\xc0\x0c'
-        if rectype == 'a':
+        if rectype == self.DNSTYPE:
             rbytes = rbytes + bytes([0]) + bytes([1])
         rbytes = rbytes + bytes([0]) + bytes([1])
         rbytes += int(recttl).to_bytes(4, byteorder='big')
-        if rectype == 'a':
+        if rectype == self.DNSTYPE:
             rbytes = rbytes + bytes([0]) + bytes([4])
             for part in recval.split('.'):
                 rbytes += bytes([int(part)])
@@ -132,10 +145,14 @@ class DNS:
         #QR+OPCODE+AA+TC+RD && RA+Z+RCODE
         FLAGS = int('1'+self.OPCODE+'1'+'0'+'0', 2).to_bytes(1, byteorder='big')+int('0'+'000'+'0000', 2).to_bytes(1, byteorder='big')     
         QDCOUNT = b'\x00\x01'
-        ANCOUNT = len(self.getrecs(self.data[12:])[0]).to_bytes(2, byteorder='big')
-        if ANCOUNT == b'\x00\x00':
-            FLAGS = int('1'+self.OPCODE+'0'+'0'+'0', 2).to_bytes(1, byteorder='big')+int('0'+'000'+'0000', 2).to_bytes(1, byteorder='big')     
-            answers = dns.resolver.query('.'.join(self.getrecs(self.data[12:])[2]), str(self.DNSTYPE))
+        records = self.getrecs(self.data[12:])
+        print(records[0])
+        if records[0] == "NotAA":
+            FLAGS = int('1'+self.OPCODE+'0'+'0'+'0', 2).to_bytes(1, byteorder='big')+int('0'+'000'+'0000', 2).to_bytes(1, byteorder='big')  
+            try:   
+                answers = dns.resolver.query('.'.join(self.getrecs(self.data[12:])[2]), str(self.DNSTYPE))
+            except:
+                return self.generate_Empty()
             count =0
             ips = []
             for ip_val in answers:
@@ -152,6 +169,9 @@ class DNS:
                 dnsbody += self.rectobytes(domainname, rectype, 3600, ip)   
             return dnsheader + dnsquestion + dnsbody
 
+        ANCOUNT = len(records[0]).to_bytes(2, byteorder='big')
+        if ANCOUNT == b'\x00\x00':
+            return self.generate_Name_Error()
         NSCOUNT = (0).to_bytes(2, byteorder='big')
         ARCOUNT = (0).to_bytes(2, byteorder='big')
         dnsheader = self.TRANSACTION_ID+FLAGS+QDCOUNT+ANCOUNT+NSCOUNT+ARCOUNT

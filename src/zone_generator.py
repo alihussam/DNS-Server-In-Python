@@ -1,6 +1,7 @@
 import dns.resolver
 import json
 
+#https://moz.com/top500
 #All links were genrated using hacker link .com
 f = open("Links/links.txt",'r')
 
