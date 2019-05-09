@@ -1,0 +1,16 @@
+{
+    "$origin": "networkadvertising.org.",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "34.233.57.47"
+        },
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "34.226.51.239"
+        }
+    ]
+}

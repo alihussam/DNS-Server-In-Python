@@ -1,0 +1,18 @@
+{
+    "$origin": "mail.google.com",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "172.217.169.229"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "googlemail.l.google.com."
+        }
+    ]
+}

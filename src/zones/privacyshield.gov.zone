@@ -1,0 +1,11 @@
+{
+    "$origin": "privacyshield.gov.",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "52.4.15.10"
+        }
+    ]
+}

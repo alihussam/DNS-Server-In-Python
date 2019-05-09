@@ -1,0 +1,5 @@
+{
+    "$origin": "fda.gov.",
+    "$ttl": 3600,
+    "cname": []
+}

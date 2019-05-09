@@ -1,0 +1,11 @@
+{
+    "$origin": "washingtonpost.com.",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "104.93.247.129"
+        }
+    ]
+}

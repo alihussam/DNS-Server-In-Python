@@ -1,0 +1,11 @@
+{
+    "$origin": "theglobeandmail.com.",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "199.198.138.250"
+        }
+    ]
+}

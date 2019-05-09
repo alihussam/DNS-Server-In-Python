@@ -1,0 +1,16 @@
+{
+    "$origin": "nationalgeographic.com.",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "35.170.156.131"
+        },
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "52.2.76.23"
+        }
+    ]
+}

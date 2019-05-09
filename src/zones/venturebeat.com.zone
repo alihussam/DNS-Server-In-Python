@@ -1,0 +1,11 @@
+{
+    "$origin": "venturebeat.com.",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "192.0.66.2"
+        }
+    ]
+}

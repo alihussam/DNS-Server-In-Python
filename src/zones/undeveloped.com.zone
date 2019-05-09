@@ -1,0 +1,11 @@
+{
+    "$origin": "undeveloped.com.",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "52.28.84.253"
+        }
+    ]
+}

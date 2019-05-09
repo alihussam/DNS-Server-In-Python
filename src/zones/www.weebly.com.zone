@@ -1,0 +1,23 @@
+{
+    "$origin": "www.weebly.com",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "74.115.50.110"
+        },
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "74.115.50.109"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "weebly.com."
+        }
+    ]
+}

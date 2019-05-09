@@ -1,0 +1,23 @@
+{
+    "$origin": "answers.yahoo.com",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "87.248.118.22"
+        },
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "87.248.118.23"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "fd-geoycpi-uno-deluxe.gycpi.b.yahoodns.net."
+        }
+    ]
+}

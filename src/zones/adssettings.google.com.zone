@@ -1,0 +1,18 @@
+{
+    "$origin": "adssettings.google.com",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "172.217.169.238"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "www3.l.google.com."
+        }
+    ]
+}

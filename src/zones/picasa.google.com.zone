@@ -1,0 +1,18 @@
+{
+    "$origin": "picasa.google.com",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "216.58.208.68"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "www2.l.google.com."
+        }
+    ]
+}

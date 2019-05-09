@@ -1,0 +1,18 @@
+{
+    "$origin": "web.fc2.com",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "104.244.99.19"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "chps-web.fc2.me."
+        }
+    ]
+}

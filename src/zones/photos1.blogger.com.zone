@@ -1,0 +1,18 @@
+{
+    "$origin": "photos1.blogger.com",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "172.217.18.132"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "photos1.l.google.com."
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "$origin": "gooyaabitemplates.com.",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "74.124.197.192"
+        }
+    ]
+}

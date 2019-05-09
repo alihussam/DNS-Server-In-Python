@@ -1,0 +1,11 @@
+{
+    "$origin": "steampowered.com.",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "23.9.186.33"
+        }
+    ]
+}

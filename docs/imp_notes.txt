@@ -26,3 +26,21 @@
 0. Used to reduce bandwidth that DNS requests takes.
 1. First two bits are 11 for a message.
 2. 
+
+#####################################################################
+~~~~~~~~~~~~~~~~~~~~~~~~~DNS QUERY BREAKDOWN~~~~~~~~~~~~~~~~~~~~~~~~~
+#####################################################################
+1. DNS Header is 12 bytes in size. Breakdown for the header is given in order below:
+   a. Transaction ID = 2bytes
+   b. 3rd and 4th byte contains flags, each of one bit
+      i.  BYTE1 contains QR,OPCODE, AA,TC,RD flags
+          .. QR(0/1) Query 0 or Response 1
+          .. Opcode = 4bit(2-5), we will use 0 for standard query.
+          .. AA field: Authoritative Answer 1 bit. 
+          .. TC if request bigger than 512 bytes so we will tell that it was truncated.
+          .. RD recursion desired: if recursion to do or not. Ask server if it offers recursion we will set it to 0.
+          .. Z is reserved for future uses. Set all to 0.
+          .. RCODE 4 bit: tells weather DNS Query was successful for simplicity we will say all were successful.
+      ii. BYTE2 contains RA, Z, RCODE flags
+      #Question count is always 1 in practical 
+        # #QDCOUNT HAS 2 bytes but as only 1 query is practical only last bit is set to 1

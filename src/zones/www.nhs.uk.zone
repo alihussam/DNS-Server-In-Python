@@ -1,0 +1,18 @@
+{
+    "$origin": "www.nhs.uk",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "23.9.176.38"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "san.nhs.uk.edgekey.net."
+        }
+    ]
+}

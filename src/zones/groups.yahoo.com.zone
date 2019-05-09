@@ -1,0 +1,23 @@
+{
+    "$origin": "groups.yahoo.com",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "87.248.118.23"
+        },
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "87.248.118.22"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "fd-geoycpi-uno.gycpi.b.yahoodns.net."
+        }
+    ]
+}

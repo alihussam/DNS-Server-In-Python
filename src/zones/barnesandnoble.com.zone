@@ -1,0 +1,11 @@
+{
+    "$origin": "barnesandnoble.com.",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "161.221.74.213"
+        }
+    ]
+}

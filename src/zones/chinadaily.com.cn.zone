@@ -1,0 +1,11 @@
+{
+    "$origin": "chinadaily.com.cn.",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "111.13.49.147"
+        }
+    ]
+}

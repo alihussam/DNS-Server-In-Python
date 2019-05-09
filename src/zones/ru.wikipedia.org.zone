@@ -1,0 +1,18 @@
+{
+    "$origin": "ru.wikipedia.org",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "103.102.166.224"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "dyna.wikimedia.org."
+        }
+    ]
+}

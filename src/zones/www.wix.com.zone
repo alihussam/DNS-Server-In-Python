@@ -1,0 +1,18 @@
+{
+    "$origin": "www.wix.com",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "185.230.61.163"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "wwworigin.wix.com."
+        }
+    ]
+}

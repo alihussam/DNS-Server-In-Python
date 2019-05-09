@@ -1,0 +1,11 @@
+{
+    "$origin": "rottentomatoes.com.",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "52.11.155.253"
+        }
+    ]
+}

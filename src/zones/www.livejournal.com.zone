@@ -1,0 +1,18 @@
+{
+    "$origin": "www.livejournal.com",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "81.19.74.5"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "clb.livejournal.com."
+        }
+    ]
+}

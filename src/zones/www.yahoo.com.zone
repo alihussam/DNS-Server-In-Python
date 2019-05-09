@@ -1,0 +1,23 @@
+{
+    "$origin": "www.yahoo.com",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "87.248.98.7"
+        },
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "87.248.98.8"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "atsv2-fp-shed.wg1.b.yahoo.com."
+        }
+    ]
+}

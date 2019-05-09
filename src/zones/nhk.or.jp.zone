@@ -1,0 +1,5 @@
+{
+    "$origin": "nhk.or.jp.",
+    "$ttl": 3600,
+    "cname": []
+}

@@ -1,0 +1,23 @@
+{
+    "$origin": "my.yahoo.com",
+    "$ttl": 3600,
+    "a": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "87.248.98.8"
+        },
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "87.248.98.7"
+        }
+    ],
+    "cname": [
+        {
+            "name": "@",
+            "ttl": 400,
+            "value": "media-router-fp1.media.yahoo.com."
+        }
+    ]
+}
